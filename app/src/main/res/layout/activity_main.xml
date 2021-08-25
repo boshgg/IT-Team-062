@@ -30,16 +30,17 @@
         android:layout_below="@id/t_0"
         android:textColor="#778899"
         />
+
     <EditText
         android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/t_1"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Username"
         android:singleLine="true"
-        android:textSize="16sp"
-        android:layout_below="@id/t_1"/>
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/t_2"
