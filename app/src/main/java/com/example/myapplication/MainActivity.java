@@ -15,21 +15,15 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private Button mBtnLogin;
+    private Button mBtnRegister;
     private EditText mEtUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mBtnLogin = findViewById((R.id.btn_login));
-        mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            }
-        });
+        mBtnRegister = findViewById((R.id.btn_register));
         mEtUserName = findViewById(R.id.userName);
         mEtUserName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -47,5 +41,31 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        setListeners();
+
+    }
+
+    private void setListeners(){
+        OnClick onClick = new OnClick();
+
+        mBtnLogin.setOnClickListener(onClick);
+        mBtnRegister.setOnClickListener(onClick);
+    }
+
+    private class OnClick implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            Intent intent = null;
+            switch (view.getId()){
+                case R.id.btn_login:
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                    break;
+
+                case R.id.btn_register:
+                    intent = new Intent(MainActivity.this, RegisterActivity.class);
+                    break;
+            }
+            startActivity(intent);
+        }
     }
 }

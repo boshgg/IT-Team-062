@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/COMP30022_IT/project/app/src/main/res/drawable/back.xml" value="0.5815384615384616" />
         <entry key="..\:/COMP30022_IT/project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5815384615384616" />
-        <entry key="..\:/COMP30022_IT/project/app/src/main/res/layout/activity_login.xml" value="0.47101449275362317" />
+        <entry key="..\:/COMP30022_IT/project/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/COMP30022_IT/project/app/src/main/res/layout/activity_login2.xml" value="0.2658514492753623" />
         <entry key="..\:/COMP30022_IT/project/app/src/main/res/layout/activity_main.xml" value="0.47101449275362317" />
+        <entry key="..\:/COMP30022_IT/project/app/src/main/res/layout/activity_register2.xml" value="0.21927083333333333" />
         <entry key="..\:/COMP30022_IT/project/app/src/main/res/layout/activity_text_view.xml" value="0.47101449275362317" />
       </map>
     </option>
