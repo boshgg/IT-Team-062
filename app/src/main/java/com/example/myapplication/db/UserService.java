@@ -13,12 +13,12 @@ public class UserService {
     }
 
     public boolean login(String name, String password){
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         String sql = "select * from userData where name=? and password=?";
         Cursor cursor = db.rawQuery(sql, new String[] {name, password});
-        if (cursor.moveToFirst()) {
-            cursor.close();
+        if (cursor.getCount() > 0) {
             return true;
+
         }
         return false;
     }

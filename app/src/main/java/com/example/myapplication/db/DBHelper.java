@@ -1,20 +1,19 @@
 package com.example.myapplication.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     static int dbVersion = 1;
-    static String name = "it_app.db";
+    static String name = "DB.db";
 
     // create new user data in sql
     // id+username+password
-    public static final String CREATE_USERDATA="create table userData(" +
-            "id integer primary key autoincrement,"
-            +"name varchar(20),"
-            +"password varchar(20))";
-
+    public static final String CREATE_USERDATA="create table " +
+            "userData(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "name varchar(20), password varchar(20))";
     private Context mContext;
 
     public DBHelper(Context context){
@@ -31,6 +30,10 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USERDATA);
-        sqLiteDatabase.execSQL("INSERT into information(name,password) VALUES (it2021, it2021);");
+        ContentValues cv = new ContentValues();
+        cv.put("name", "123");
+        cv.put("password","123");
+        sqLiteDatabase.insert("userData", null, cv);
+
     }
 }

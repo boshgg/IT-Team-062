@@ -53,9 +53,14 @@ public class MainActivity extends AppCompatActivity {
             if (view.getId() == R.id.btn_register){
                 intent = new Intent(MainActivity.this, RegisterActivity.class);
             }else if (view.getId() == R.id.btn_login){
-                String username =mEtUserName.getText().toString();
-                String password =mEtPassword.getText().toString();
-                if (userService.login(username,password)) {
+                String username =mEtUserName.getText().toString().trim();
+                String password =mEtPassword.getText().toString().trim();
+                if (username.isEmpty()){
+                    Toast.makeText(MainActivity.this, "username is empty", Toast.LENGTH_SHORT).show();
+                }else if (password.isEmpty()){
+                    Toast.makeText(MainActivity.this, "password is empty", Toast.LENGTH_SHORT).show();
+                }
+                else if (userService.login(username,password)) {
                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
