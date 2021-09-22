@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
-    
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name=".AddActivity"
+            android:label="Add Customer"
+            android:parentActivityName=".CreateDBActivity"
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
@@ -20,6 +25,10 @@
         <activity
             android:name=".TextViewActivity"
             android:exported="true" />
+        <activity
+            android:name=".CreateDBActivity"
+            android:exported="true"
+            android:label="Customer List" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
