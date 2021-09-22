@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 }else if (password.isEmpty()){
                     Toast.makeText(MainActivity.this, "password is empty", Toast.LENGTH_SHORT).show();
                 }
+                // activity jumped after login
+                // waiting for changing activity
                 else if (userService.login(username,password)) {
                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     intent = new Intent(MainActivity.this, RegisterActivity.class);

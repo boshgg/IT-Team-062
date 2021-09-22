@@ -12,6 +12,7 @@ public class UserService {
         dbHelper = new DBHelper(context);
     }
 
+    // check username and password while login
     public boolean login(String name, String password){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String sql = "select * from userData where name=? and password=?";
