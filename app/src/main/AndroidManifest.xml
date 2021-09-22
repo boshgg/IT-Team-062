@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".AddActivity"
-            android:label="Add Customer"
-            android:parentActivityName=".CreateDBActivity"
+            android:name=".UpdateActivity"
             android:exported="true" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="true"
+            android:label="Add Customer"
+            android:parentActivityName=".CreateDBActivity" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
