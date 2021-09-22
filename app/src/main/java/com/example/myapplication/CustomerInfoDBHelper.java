@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import java.util.Date;
 
 public class CustomerInfoDBHelper extends SQLiteOpenHelper {
@@ -21,7 +23,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_AGE = "age";
 
 
-    public CustomerInfoDBHelper(Context context){
+    CustomerInfoDBHelper(@Nullable Context context){
         super(context,DATABASE_NAME,null, DATABASE_VERSION);
         mContext=context;
     }
@@ -67,5 +69,23 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    void updateData(String row_id, String name, String birthday, String age){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, name);
+        cv.put(COLUMN_BIRTHDAY, birthday);
+        cv.put(COLUMN_AGE, age);
+
+        long result = db.update(TABLE_NAME, cv, "id=?", new String[]{row_id});
+
+        if(result == -1 ){
+            Toast.makeText(mContext, "Failed to update", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(mContext, "Updated successfully", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
