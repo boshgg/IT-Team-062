@@ -31,8 +31,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USERDATA);
         ContentValues cv = new ContentValues();
-        cv.put("name", "123");
-        cv.put("password","123");
+        cv.put("name", "it2021");
+        cv.put("password","it2021");
         sqLiteDatabase.insert("userData", null, cv);
 
     }

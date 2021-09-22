@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mBtnLogin = findViewById((R.id.btn_login));
         mBtnRegister = findViewById((R.id.btn_register));
         mEtUserName = findViewById(R.id.userName);
@@ -62,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (userService.login(username,password)) {
                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    intent = new Intent(MainActivity.this, RegisterActivity.class);
                 }
                 else {
                     Toast.makeText(MainActivity.this, "login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
+            startActivity(intent);
         }
     }
 }
