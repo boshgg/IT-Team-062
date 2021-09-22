@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 // waiting for changing activity
                 else if (userService.login(username,password)) {
                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(MainActivity.this, RegisterActivity.class);
+                    intent = new Intent(MainActivity.this, CreateDBActivity.class);
                 }
                 else {
                     Toast.makeText(MainActivity.this, "login Failed", Toast.LENGTH_SHORT).show();
