@@ -92,15 +92,7 @@
         android:layout_marginLeft="230dp"
         android:layout_below="@+id/password"/>
 
-    <Button
-        android:id="@+id/create_database"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="293dp"
-        android:layout_marginRight="140dp"
-        android:text="Create_table" />
+
 
 
 </RelativeLayout>
