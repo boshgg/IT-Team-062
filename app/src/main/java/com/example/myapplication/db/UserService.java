@@ -7,19 +7,18 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.myapplication.db.DBHelper;
 
 public class UserService {
-    private DBHelper dbHelper;
+    private MyDatabaseHelper dbHelper;
     public UserService(Context context){
-        dbHelper = new DBHelper(context);
+        dbHelper = new MyDatabaseHelper(context);
+
     }
 
     // check username and password while login
     public boolean login(String name, String password){
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String sql = "select * from userData where name=? and password=?";
-        Cursor cursor = db.rawQuery(sql, new String[] {name, password});
-        if (cursor.getCount() > 0) {
+        dbHelper.openDatabase();
+        String result = dbHelper.QuerySQL(name, password);
+        if (result.equals("success")){
             return true;
-
         }
         return false;
     }
