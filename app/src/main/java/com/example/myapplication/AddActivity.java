@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -29,11 +30,19 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CustomerInfoDBHelper myDB = new CustomerInfoDBHelper(AddActivity.this);
-                myDB.add_customer(name_input.getText().toString().trim(),
-                        Integer.valueOf(age_input.getText().toString().trim()),
-                        birthday_input.getText().toString().trim(),
-                        gender_input.getText().toString().trim()
-                        );
+                if (name_input.getText().toString().isEmpty()||
+                        age_input.getText().toString().isEmpty()||
+                        birthday_input.getText().toString().isEmpty()||
+                        gender_input.getText().toString().isEmpty()){
+                    Toast.makeText(AddActivity.this, "MISSING required information", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    myDB.add_customer(name_input.getText().toString().trim(),
+                            Integer.valueOf(age_input.getText().toString().trim()),
+                            birthday_input.getText().toString().trim(),
+                            gender_input.getText().toString().trim()
+                    );
+                }
                 Intent intent = new Intent(AddActivity.this, CreateDBActivity.class);
                 startActivity(intent);
             }
