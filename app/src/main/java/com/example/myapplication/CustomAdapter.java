@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,17 +20,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     Activity activity;
-    private ArrayList customer_id, customer_name, customer_birthday, customer_age;
+    private ArrayList customer_id, customer_name, customer_birthday, customer_age, customer_gender;
+
+    Animation translate_anim;
 
     CustomAdapter(Activity activity, Context context, ArrayList customer_id, ArrayList customer_name,
-                  ArrayList customer_birthday, ArrayList customer_age){
+                  ArrayList customer_birthday, ArrayList customer_age, ArrayList customer_gender){
         this.activity = activity;
         this.context = context;
         this.customer_id = customer_id;
         this.customer_name = customer_name;
         this.customer_birthday = customer_birthday;
         this.customer_age = customer_age;
-
+        this.customer_gender = customer_gender;
     }
 
     @NonNull
@@ -45,6 +49,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.customer_name_txt.setText(String.valueOf(customer_name.get(position)));
         holder.customer_birthday_txt.setText(String.valueOf(customer_birthday.get(position)));
         holder.customer_age_txt.setText(String.valueOf(customer_age.get(position)));
+        holder.customer_gender_txt.setText(String.valueOf(customer_gender.get(position)));
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("name", String.valueOf(customer_name.get(num)));
                 intent.putExtra("birthday", String.valueOf(customer_birthday.get(num)));
                 intent.putExtra("age", String.valueOf(customer_age.get(num)));
+                intent.putExtra("gender", String.valueOf(customer_gender.get(num)));
                 activity.startActivityForResult(intent,1);
 
             }
@@ -69,7 +75,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView customer_id_txt, customer_name_txt,customer_birthday_txt, customer_age_txt;
+        TextView customer_id_txt, customer_name_txt,customer_birthday_txt, customer_age_txt,
+                customer_gender_txt;
         LinearLayout mainLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,7 +85,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             customer_name_txt = itemView.findViewById(R.id.customer_name_txt);
             customer_birthday_txt = itemView.findViewById(R.id.customer_birthday_txt);
             customer_age_txt = itemView.findViewById(R.id.customer_age_txt);
+            customer_gender_txt = itemView.findViewById(R.id.customer_gender_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            mainLayout.setAnimation(translate_anim);
 
         }
     }
