@@ -18,17 +18,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     Activity activity;
-    private ArrayList customer_id, customer_name, customer_birthday, customer_age;
+    private ArrayList customer_id, customer_name, customer_birthday, customer_age, company_name, country_name,
+            customer_job, language, customer_location, interest, customer_info;
 
-    CustomAdapter(Activity activity, Context context, ArrayList customer_id, ArrayList customer_name,
-                  ArrayList customer_birthday, ArrayList customer_age){
+    CustomAdapter(Activity activity, Context context, ArrayList<String> customerId, ArrayList customer_id, ArrayList customer_name,
+                  ArrayList customer_birthday, ArrayList customer_age, ArrayList company_name, ArrayList country_name, ArrayList customer_job,
+                  ArrayList language, ArrayList customer_location, ArrayList customer_info){
         this.activity = activity;
         this.context = context;
         this.customer_id = customer_id;
         this.customer_name = customer_name;
         this.customer_birthday = customer_birthday;
         this.customer_age = customer_age;
-
+        this.company_name = company_name;
+        this.country_name = country_name;
+        this.customer_job = customer_job;
+        this.language = language;
+        this.customer_location = customer_location;
+        this.customer_info = customer_info;
     }
 
     @NonNull

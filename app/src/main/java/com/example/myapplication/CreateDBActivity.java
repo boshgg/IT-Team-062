@@ -20,7 +20,8 @@ public class CreateDBActivity extends AppCompatActivity {
     FloatingActionButton add_button;
 
     CustomerInfoDBHelper myDB;
-    ArrayList<String> customer_id, customer_name, customer_birthday, customer_age;
+    ArrayList<String> customer_id, customer_name, customer_birthday, customer_age, company_name, country_name,
+                        customer_job, language, customer_location, interest, customer_info ;
     CustomAdapter customAdapter;
 
     @Override
@@ -43,11 +44,19 @@ public class CreateDBActivity extends AppCompatActivity {
         customer_name = new ArrayList<>();
         customer_birthday = new ArrayList<>();
         customer_age = new ArrayList<>();
+        company_name = new ArrayList<>();
+        country_name = new ArrayList<>();
+        customer_job = new ArrayList<>();
+        language = new ArrayList<>();
+        customer_location = new ArrayList<>();
+        interest = new ArrayList<>();
+        customer_info = new ArrayList<>();
         storeDataInArrays();
 
         customAdapter = new CustomAdapter(CreateDBActivity.this,
                 CreateDBActivity.this, customer_id,customer_name,
-                customer_birthday, customer_age);
+                customer_birthday, customer_age, company_name, country_name,
+                customer_job, language, customer_location, interest, customer_info);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(CreateDBActivity.this));
 
@@ -72,10 +81,13 @@ public class CreateDBActivity extends AppCompatActivity {
                 customer_name.add(cursor.getString(1));
                 customer_birthday.add(cursor.getString(2));
                 customer_age.add(cursor.getString(3));
-
-
-
-
+                company_name.add(cursor.getString(20));
+                country_name.add(cursor.getString(20));
+                customer_job.add(cursor.getString(20));
+                language.add(cursor.getString(20));
+                customer_location.add(cursor.getString(20));
+                interest.add(cursor.getString(20));
+                customer_info.add(cursor.getString(100));
             }
         }
     }
