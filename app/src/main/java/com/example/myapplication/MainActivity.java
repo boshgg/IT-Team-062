@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = null;
             if (view.getId() == R.id.btn_register){
                 intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }else if (view.getId() == R.id.btn_login){
                 String username =mEtUserName.getText().toString().trim();
                 String password =mEtPassword.getText().toString().trim();
@@ -64,12 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 else if (userService.login(username,password)) {
                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     intent = new Intent(MainActivity.this, CreateDBActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(MainActivity.this, "login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
-            startActivity(intent);
+
         }
     }
 }
