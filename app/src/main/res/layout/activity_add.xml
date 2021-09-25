@@ -54,6 +54,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/age_input" />
 
+    <EditText
+        android:id="@+id/gender_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Gender"
+        android:inputType="textShortMessage"
+        android:minHeight="55dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthday_input" />
+
     <Button
         android:id="@+id/add_button"
         android:layout_width="match_parent"
@@ -62,9 +78,10 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="30dp"
         android:text="Save"
-        android:textSize="20sp"
         android:textAllCaps="false"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birthday_input" />
+        app:layout_constraintTop_toBottomOf="@+id/gender_input" />
 </androidx.constraintlayout.widget.ConstraintLayout>
