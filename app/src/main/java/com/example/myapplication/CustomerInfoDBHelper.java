@@ -19,6 +19,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "my_customers";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_GENDER = "gender";
     private static final String COLUMN_BIRTHDAY = "birthday";
     private static final String COLUMN_AGE = "age";
 
@@ -38,19 +39,20 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME + " TEXT, " +
+                        COLUMN_AGE + " INTEGER, "+
                         COLUMN_BIRTHDAY + " TEXT, "+
-                        COLUMN_AGE + " INTEGER);";
+                        COLUMN_GENDER + " TEXT);";
         sqLiteDatabase.execSQL(query);
 
     }
 
-    public void add_customer(String name, int age, String birthday){
+    public void add_customer(String name, int age, String birthday, String gender){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
-
         cv.put(COLUMN_NAME, name);
-        cv.put(COLUMN_BIRTHDAY,birthday);
         cv.put(COLUMN_AGE, age);
+        cv.put(COLUMN_BIRTHDAY,birthday);
+        cv.put(COLUMN_GENDER, gender);
         long result = db.insert(TABLE_NAME,null,cv);
         if (result == -1){
             Toast.makeText(mContext,"FAILED", Toast.LENGTH_SHORT).show();
@@ -71,21 +73,40 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateData(String row_id, String name, String birthday, String age){
+    void updateData(String row_id, String name, String birthday, String age, String gender){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, name);
-        cv.put(COLUMN_BIRTHDAY, birthday);
         cv.put(COLUMN_AGE, age);
+        cv.put(COLUMN_BIRTHDAY, birthday);
+        cv.put(COLUMN_GENDER, gender);
+
 
         long result = db.update(TABLE_NAME, cv, "id=?", new String[]{row_id});
 
         if(result == -1 ){
-            Toast.makeText(mContext, "Failed to update", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Failed to Update", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(mContext, "Updated successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Updated Successfully", Toast.LENGTH_SHORT).show();
 
         }
+    }
+    void deleteOneRow(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME,"id=?", new String[]{row_id});
+        if (result == -1){
+            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+
     }
 }
