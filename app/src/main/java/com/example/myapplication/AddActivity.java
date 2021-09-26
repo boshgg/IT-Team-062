@@ -39,7 +39,7 @@ public class AddActivity extends AppCompatActivity {
         note_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddActivity.this, com.example.myapplication.CreateDBANActivity.class);
+                Intent intent = new Intent(AddActivity.this, com.example.myapplication.CreateDBActivity.class);
                 startActivity(intent);
             }
         });
