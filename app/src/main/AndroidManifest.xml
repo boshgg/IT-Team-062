@@ -21,15 +21,6 @@
             android:label="Add Customer"
             android:parentActivityName=".CreateDBActivity" />
         <activity
-            android:name=".RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".TextViewActivity"
-            android:exported="true" />
-        <activity
             android:name=".CreateDBActivity"
             android:exported="true"
             android:label="Customer List" />
