@@ -11,11 +11,8 @@ import androidx.annotation.Nullable;
 
 import java.util.Date;
 
-
-// database helper used to store all customer information we need
 public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     private Context mContext;
-
 
     private static final String DATABASE_NAME = "Customer.db";
     private static final int DATABASE_VERSION = 1;
@@ -39,7 +36,6 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        // Create a sql table
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME + " TEXT, " +
@@ -51,7 +47,6 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     }
 
     public void add_customer(String name, int age, String birthday, String gender){
-        // function of adding one customer
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
         cv.put(COLUMN_NAME, name);
@@ -59,8 +54,6 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_BIRTHDAY,birthday);
         cv.put(COLUMN_GENDER, gender);
         long result = db.insert(TABLE_NAME,null,cv);
-
-        // check whether successful or not
         if (result == -1){
             Toast.makeText(mContext,"FAILED", Toast.LENGTH_SHORT).show();
         }
@@ -71,7 +64,6 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     }
 
     Cursor readALLData(){
-        // read all data by using cursor
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -82,7 +74,6 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     }
 
     void updateData(String row_id, String name, String birthday, String age, String gender){
-        // function of update data
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, name);
@@ -101,8 +92,6 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
 
         }
     }
-
-    // function of delete one customer from customer database
     void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME,"id=?", new String[]{row_id});
