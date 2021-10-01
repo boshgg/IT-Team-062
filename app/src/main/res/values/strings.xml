@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="tv_test1">Helloworld</string>
+    <string name="cus_name">Customer Name</string>
+    <string name="com_name">Company Name</string>
+    <string name="country">Country</string>
+    <string name="age">age</string>
+    <string name="work">Work in</string>
+    <string name="birth">Birthday</string>
+    <string name="language">Language</string>
+    <string name="location">Prefer Location</string>
+    <string name="interest">Interest in</string>
+    <string name="cus_info">About Customer</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="cus_phone">Phone Number</string>
+    <string name="gender">Gender</string>
+    <string name="cus_email">Customer Email</string>
 </resources>

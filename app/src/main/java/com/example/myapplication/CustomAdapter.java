@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.R.id.customer_company_txt;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,27 +16,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.bean.Custom;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
-    Activity activity;
-    private ArrayList customer_id, customer_name, customer_birthday, customer_age, customer_gender;
+    private List<Custom> mData;
 
-    Animation translate_anim;
-
-    CustomAdapter(Activity activity, Context context, ArrayList customer_id, ArrayList customer_name,
-                  ArrayList customer_birthday, ArrayList customer_age, ArrayList customer_gender){
-        this.activity = activity;
+    //set up adapter of customer
+    public CustomAdapter(Context context, List<Custom> data) {
         this.context = context;
-        this.customer_id = customer_id;
-        this.customer_name = customer_name;
-        this.customer_birthday = customer_birthday;
-        this.customer_age = customer_age;
-        this.customer_gender = customer_gender;
+        mData = data;
     }
 
+    //create adapter of customer
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,53 +41,67 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return new MyViewHolder(view);
     }
 
+    //set up all the values into the list
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        holder.customer_id_txt.setText(String.valueOf(customer_id.get(position)));
-        holder.customer_name_txt.setText(String.valueOf(customer_name.get(position)));
-        holder.customer_birthday_txt.setText(String.valueOf(customer_birthday.get(position)));
-        holder.customer_age_txt.setText(String.valueOf(customer_age.get(position)));
-        holder.customer_gender_txt.setText(String.valueOf(customer_gender.get(position)));
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        Custom custom = mData.get(position);
+
+        String name = custom.getName();
+        String age = custom.getAge();
+        String id = position+1+"";
+        String birth = custom.getBirthday();
+        String gender = custom.getGender();
+        String company = custom.getCompany();
+        String country = custom.getCountry();
+        String email = custom.getEmail();
+//        String phone = custom.getPhone();
+        String language = custom.getLanguage();
+        String location = custom.getLocation();
+        String interest = custom.getInterest();
+        String information = custom.getInformation();
+
+        holder.tvName.setText(name);
+        holder.tvAge.setText(age);
+        holder.tvId.setText(id);
+        holder.tvBirth.setText(birth);
+        holder.tvGender.setText(gender);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int num = holder.getAdapterPosition();
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(customer_id.get(num)));
-                intent.putExtra("name", String.valueOf(customer_name.get(num)));
-                intent.putExtra("birthday", String.valueOf(customer_birthday.get(num)));
-                intent.putExtra("age", String.valueOf(customer_age.get(num)));
-                intent.putExtra("gender", String.valueOf(customer_gender.get(num)));
-                activity.startActivityForResult(intent,1);
-
+                Intent intent = new Intent(context,UpdateActivity.class);
+                intent.putExtra("name",name);
+                intent.putExtra("age",age);
+                intent.putExtra("gender",gender);
+                intent.putExtra("birth",birth);
+                intent.putExtra("company",company);
+                intent.putExtra("country",country);
+                intent.putExtra("email",email);
+//                intent.putExtra("phone",phone);
+                intent.putExtra("language",language);
+                intent.putExtra("location",location);
+                intent.putExtra("interest",interest);
+                intent.putExtra("information",information);
+                context.startActivity(intent);
             }
         });
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return customer_id.size();
+        return mData==null?0:mData.size();
     }
 
+    //get all the values from the layout (my_row.xml)
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView customer_id_txt, customer_name_txt,customer_birthday_txt, customer_age_txt,
-                customer_gender_txt;
-        LinearLayout mainLayout;
+        TextView tvName,tvAge,tvId, tvBirth, tvGender;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            customer_id_txt = itemView.findViewById(R.id.customer_id_txt);
-            customer_name_txt = itemView.findViewById(R.id.customer_name_txt);
-            customer_birthday_txt = itemView.findViewById(R.id.customer_birthday_txt);
-            customer_age_txt = itemView.findViewById(R.id.customer_age_txt);
-            customer_gender_txt = itemView.findViewById(R.id.customer_gender_txt);
-            mainLayout = itemView.findViewById(R.id.mainLayout);
-            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
-            mainLayout.setAnimation(translate_anim);
-
+            tvName = itemView.findViewById(R.id.customer_name_txt);
+            tvAge = itemView.findViewById(R.id.customer_age_txt);
+            tvId = itemView.findViewById(R.id.customer_id_txt);
+            tvBirth = itemView.findViewById(R.id.customer_birthday_txt);
+            tvGender = itemView.findViewById(R.id.customer_gender_txt);
         }
     }
 }
