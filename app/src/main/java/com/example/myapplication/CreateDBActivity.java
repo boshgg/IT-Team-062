@@ -24,6 +24,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class CreateDBActivity extends AppCompatActivity {
+
+    // play recycler view to visualize our customer database
     RecyclerView recyclerView;
     FloatingActionButton add_button;
     ImageView empty_imageview;
@@ -37,7 +39,6 @@ public class CreateDBActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-
         recyclerView = findViewById(R.id.recyclerView);
         empty_imageview = findViewById(R.id.empty_imageView);
         no_data = findViewById(R.id.no_data);
@@ -58,9 +59,11 @@ public class CreateDBActivity extends AppCompatActivity {
         customer_gender = new ArrayList<>();
         storeDataInArrays();
 
+        // show database by using custom adapter
         customAdapter = new CustomAdapter(CreateDBActivity.this,
                 CreateDBActivity.this, customer_id,customer_name,
                 customer_birthday, customer_age, customer_gender);
+
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(CreateDBActivity.this));
 
@@ -68,6 +71,7 @@ public class CreateDBActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // This function is used to refresh page after updating event
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode ==1){
             recreate();
@@ -75,6 +79,7 @@ public class CreateDBActivity extends AppCompatActivity {
     }
 
     void storeDataInArrays(){
+        // Store data from database to arrays
         Cursor cursor = myDB.readALLData();
         if (cursor.getCount() == 0){
             empty_imageview.setVisibility(View.VISIBLE);
@@ -105,13 +110,14 @@ public class CreateDBActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.delete_all){
             confirmDialog();
-
+            // send warning information while delete all data
         }
         return super.onOptionsItemSelected(item);
     }
 
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // warning message
         builder.setTitle("Delete ALL ?");
         builder.setMessage("Are you sure to delete ALL DATA ?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
