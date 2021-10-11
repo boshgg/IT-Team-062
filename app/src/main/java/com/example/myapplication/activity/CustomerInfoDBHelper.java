@@ -178,6 +178,28 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
             Toast.makeText(mContext, "Updated Successfully", Toast.LENGTH_SHORT).show();
         }
     }
+
+    //this function get all the values from the updateActivity, and change the values in the table
+    void updateNoteData(String nid, String cid, String event, String date, String note, String type){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_CID, cid);
+        cv.put(COLUMN_EVENT, event);
+        cv.put(COLUMN_DATE, date);
+        cv.put(COLUMN_TYPE,type);
+        cv.put(COLUMN_NOTE, note);
+
+        long result = db.update(TABLE_NAME1, cv, "id=?", new String[]{nid});
+        //check the update does not success
+        if(result < 1 ){
+            Toast.makeText(mContext, "Failed to Update", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(mContext, "Updated Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
     //function delete on row of customer table
     void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
