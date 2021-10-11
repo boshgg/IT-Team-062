@@ -1,24 +1,19 @@
-package com.example.myapplication;
+package com.example.myapplication.adapter;
 
-import static com.example.myapplication.R.id.customer_company_txt;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.R;
+import com.example.myapplication.activity.UpdateActivity;
 import com.example.myapplication.bean.Custom;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
@@ -69,11 +64,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,UpdateActivity.class);
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id",custom.getId());
                 intent.putExtra("name",name);
                 intent.putExtra("age",age);
                 intent.putExtra("gender",gender);
-                intent.putExtra("birth",birth);
+                intent.putExtra("birthday",birth);
                 intent.putExtra("company",company);
                 intent.putExtra("country",country);
                 intent.putExtra("email",email);

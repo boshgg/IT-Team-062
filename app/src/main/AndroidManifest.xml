@@ -12,29 +12,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".UpdateActivity"
-            android:exported="true"
-            android:parentActivityName=".CreateDBActivity" />
+            android:name=".activity.NoteListActivity"
+            android:exported="true" />
         <activity
-            android:name=".AddActivity"
+            android:name=".activity.UpdateActivity"
+            android:exported="true"
+            android:parentActivityName=".activity.CreateDBActivity" />
+        <activity
+            android:name=".activity.AddActivity"
             android:exported="true"
             android:label="Add Customer"
-            android:parentActivityName=".CreateDBActivity" />
+            android:parentActivityName=".activity.CreateDBActivity" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".TextViewActivity"
+            android:name=".activity.TextViewActivity"
             android:exported="true" />
         <activity
-            android:name=".CreateDBActivity"
+            android:name=".activity.CreateDBActivity"
             android:exported="true"
             android:label="Customer List" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +45,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".NoteAddActivity"></activity>
+        <activity android:name=".activity.NoteAddActivity" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -6,19 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.R;
+
 public class UpdateActivity extends AppCompatActivity {
     EditText name_input, birthday_input, age_input, gender_input, companyName_input,
             country_input, cusPhone_input, email_input, language_input, location_input,
             interest_input, clientInfo_input;
     Button update_button, delete_button;
-    String id, name, birthday, age, gender, company, country, phone, email, language, location,
+    int id;
+    String  name, birthday, age, gender, company, country, phone, email, language, location,
             interest, information;
 
     //get all the changing value in the layout(activity_update)
@@ -66,7 +68,7 @@ public class UpdateActivity extends AppCompatActivity {
                 interest = interest_input.getText().toString();
                 information = clientInfo_input.getText().toString();
 
-                myDB.updateData(id, name, birthday, age, gender, company, country, phone, email,
+                myDB.updateData(id+"", name, birthday, age, gender, company, country, phone, email,
                         language, location, interest, information);
 
                 Intent intent = new Intent(UpdateActivity.this, CreateDBActivity.class);
@@ -80,12 +82,23 @@ public class UpdateActivity extends AppCompatActivity {
                 confirmDialog();
             }
         });
+
+        // this is the button for user jump into list of note page
+        View note_button = findViewById(R.id.note_button);
+        note_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateActivity.this, NoteListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     //get the values that need to show on the list
     void getAndSetIntentData() {
 
 
         try {
+            id = getIntent().getIntExtra("id",-1);
             name = getIntent().getStringExtra("name");
             birthday = getIntent().getStringExtra("birthday");
             age = getIntent().getStringExtra("age");
@@ -113,18 +126,19 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 CustomerInfoDBHelper myDB = new CustomerInfoDBHelper(UpdateActivity.this);
-                myDB.deleteOneRow(id);
+                myDB.deleteOneRow(id+"");
                 finish();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         });
         builder.create().show();
     }
+
+
 
 
 }

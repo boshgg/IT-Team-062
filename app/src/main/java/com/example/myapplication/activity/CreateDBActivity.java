@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.R;
+import com.example.myapplication.adapter.CustomAdapter;
 import com.example.myapplication.bean.Custom;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -58,7 +59,6 @@ public class CreateDBActivity extends AppCompatActivity {
         });
 
         myDB = new CustomerInfoDBHelper(CreateDBActivity.this);
-
         customer_id = new ArrayList<>();
         customer_name = new ArrayList<>();
         customer_birthday = new ArrayList<>();
