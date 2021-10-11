@@ -4,73 +4,76 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.NoteListAdapter;
-import com.example.myapplication.bean.Custom;
+import com.example.myapplication.bean.Note;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
-
+    //change store a list of note data and note adapter
     RecyclerView recyclerView;
-    private List<Custom> allData;
-    NoteListAdapter customAdapter;
+    private List<Note> noteData;
+    FloatingActionButton add_button;
+    NoteListAdapter NoteListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_note_list);
 
         recyclerView = findViewById(R.id.recyclerView);
-        allData = new ArrayList<>();
-        customAdapter = new NoteListAdapter(this,allData);
-        recyclerView.setAdapter(customAdapter);
+        noteData = new ArrayList<>();
+        NoteListAdapter = new NoteListAdapter(this,noteData);
+        recyclerView.setAdapter(NoteListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        add_button = findViewById(R.id.add_button);
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NoteListActivity.this, NoteAddActivity.class);
+                startActivity(intent);
+            }
+        });
 
         getDbData();
     }
 
-    // check all the customer in database
+
     private void getDbData() {
         CustomerInfoDBHelper helper = new CustomerInfoDBHelper(this);
-        Cursor cursor = helper.readALLData();
+        // read all notes
+        Cursor cursor = helper.readALLNoteData();
 
         try {
             while (cursor.moveToNext()){
 
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-                String age = cursor.getString(cursor.getColumnIndexOrThrow("age"));
-                String birth = cursor.getString(cursor.getColumnIndexOrThrow("birthday"));
-                String gender = cursor.getString(cursor.getColumnIndexOrThrow("gender"));
-                String company = cursor.getString(cursor.getColumnIndexOrThrow("company"));
-                String country = cursor.getString(cursor.getColumnIndexOrThrow("country"));
-                String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
-//                String phone = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
-                String language = cursor.getString(cursor.getColumnIndexOrThrow("language"));
-                String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
-                String interest = cursor.getString(cursor.getColumnIndexOrThrow("interest"));
-                String information = cursor.getString(cursor.getColumnIndexOrThrow("information"));
+                int nid = cursor.getInt(cursor.getColumnIndexOrThrow("nid"));
+                String cid = cursor.getString(cursor.getColumnIndexOrThrow("cid"));
+                String event = cursor.getString(cursor.getColumnIndexOrThrow("event"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+                String addnote = cursor.getString(cursor.getColumnIndexOrThrow("note"));
+                String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
 
-                Custom custom = new Custom();
-                custom.setId(id);
-                custom.setName(name);
-                custom.setAge(age);
-                custom.setBirthday(birth);
-                custom.setGender(gender);
-                custom.setCompany(company);
-                custom.setEmail(email);
-                custom.setLanguage(language);
-                custom.setLocation(location);
-                custom.setInterest(interest);
-                custom.setInformation(information);
+                Note note = new Note();
+                note.setId(nid);
+                note.setCid(cid);
+                note.setEvent(event);
+                note.setDate(date);
+                note.setAddnote(addnote);
+                note.setAddnote(type);
 
-                allData.add(custom);
+                noteData.add(note);
             }
-            customAdapter.notifyDataSetChanged();
+            NoteListAdapter.notifyDataSetChanged();
         }catch (Exception e){
             e.printStackTrace();
         }

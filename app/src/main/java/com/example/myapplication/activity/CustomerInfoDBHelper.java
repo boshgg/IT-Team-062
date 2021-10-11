@@ -18,7 +18,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     private Context nContext;
 
     private static final String DATABASE_NAME = "Customer.db";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 2;
     private static final String TABLE_NAME1 = "my_customers";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
@@ -35,11 +35,12 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_INFORMATION = "information";
 
     private static final String TABLE_NAME2 = "customers_note";
+    private static final String COLUMN_NID = "nid";
     private static final String COLUMN_EVENT = "event";
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_TYPE = "type";
     private static final String COLUMN_NOTE = "note";
-
+    private static final String COLUMN_CID = "cid";
     CustomerInfoDBHelper(@Nullable Context context){
         super(context,DATABASE_NAME,null, DATABASE_VERSION);
         mContext=context;
@@ -69,7 +70,8 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(query1);
 
         String query2 = "CREATE TABLE " + TABLE_NAME2 +
-                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " (" + COLUMN_NID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_CID + " TEXT, "+
                 COLUMN_EVENT + " TEXT, " +
                 COLUMN_DATE + " INTEGER, "+
                 COLUMN_TYPE + " TEXT, "+
@@ -79,7 +81,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     }
 
     // this function is put all the values AddActivity class into the database
-    public void add_customer(String name,  String age,String birthday, String gender,
+    public void add_customer(String name, String age,String birthday, String gender,
                              String company, String country, String phone, String email, String language,
                              String location, String interest, String information){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -108,9 +110,10 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void add_note(String event, String date, String type, String note){
+    public void add_note(String cid, String event, String date, String type, String note){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
+        cv.put(COLUMN_CID, cid);
         cv.put(COLUMN_EVENT, event);
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_TYPE,type);
@@ -128,6 +131,16 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     // get the whole customer table
     Cursor readALLData(){
         String query = "SELECT * FROM " + TABLE_NAME1;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor readALLNoteData(){
+        String query = "SELECT * FROM " + TABLE_NAME2;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if (db != null){

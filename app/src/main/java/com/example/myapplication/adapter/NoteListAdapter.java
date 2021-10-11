@@ -12,23 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.activity.UpdateActivity;
-import com.example.myapplication.bean.Custom;
+import com.example.myapplication.activity.NoteAddActivity;
+import com.example.myapplication.bean.Note;
 
 import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyViewHolder> {
 
         private Context context;
-        private List<Custom> mData;
+        private List<Note> nData;
 
-        //set up adapter of customer
-        public NoteListAdapter(Context context, List<Custom> data) {
+        //set up adapter of note
+        public NoteListAdapter(Context context, List<Note> data) {
             this.context = context;
-            mData = data;
+            nData = data;
         }
 
-        //create adapter of customer
+        //create adapter of note
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,45 +40,31 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
         //set up all the values into the list
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-            Custom custom = mData.get(position);
+            Note note = nData.get(position);
 
-            String name = custom.getName();
-            String age = custom.getAge();
-            String id = position+1+"";
-            String birth = custom.getBirthday();
-            String gender = custom.getGender();
-            String company = custom.getCompany();
-            String country = custom.getCountry();
-            String email = custom.getEmail();
-//        String phone = custom.getPhone();
-            String language = custom.getLanguage();
-            String location = custom.getLocation();
-            String interest = custom.getInterest();
-            String information = custom.getInformation();
+            String nid = position+1+"";
+            String cid = note.getCid();
+            String event = note.getEvent();
+            String date = note.getDate();
+            String addnote = note.getAddnote();
+            String type = note.getType();
 
-            holder.tvName.setText(name);
-            holder.tvAge.setText(age);
-            holder.tvId.setText(id);
-            holder.tvBirth.setText(birth);
-            holder.tvGender.setText(gender);
+            holder.tvId.setText(nid);
+            holder.tvCid.setText(cid);
+            holder.tvEvent.setText(event);
+            holder.tvDate.setText(date);
+            holder.tvType.setText(type);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, UpdateActivity.class);
-                    intent.putExtra("id",custom.getId());
-                    intent.putExtra("name",name);
-                    intent.putExtra("age",age);
-                    intent.putExtra("gender",gender);
-                    intent.putExtra("birthday",birth);
-                    intent.putExtra("company",company);
-                    intent.putExtra("country",country);
-                    intent.putExtra("email",email);
-//                intent.putExtra("phone",phone);
-                    intent.putExtra("language",language);
-                    intent.putExtra("location",location);
-                    intent.putExtra("interest",interest);
-                    intent.putExtra("information",information);
+                    Intent intent = new Intent(context, NoteAddActivity.class);
+                    intent.putExtra("nid",note.getId());
+                    intent.putExtra("cid",cid);
+                    intent.putExtra("event",event);
+                    intent.putExtra("date",date);
+                    intent.putExtra("addnote",addnote);
+                    intent.putExtra("type",type);
                     context.startActivity(intent);
                 }
             });
@@ -86,19 +72,19 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
 
         @Override
         public int getItemCount() {
-            return mData==null?0:mData.size();
+            return nData==null?0:nData.size();
         }
 
         //get all the values from the layout (my_row.xml)
         public class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView tvName,tvAge,tvId, tvBirth, tvGender;
+            TextView tvCid, tvId, tvEvent,tvDate, tvType;
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                tvName = itemView.findViewById(R.id.customer_name_txt);
-                tvAge = itemView.findViewById(R.id.customer_age_txt);
-                tvId = itemView.findViewById(R.id.customer_id_txt);
-                tvBirth = itemView.findViewById(R.id.customer_birthday_txt);
-                tvGender = itemView.findViewById(R.id.customer_gender_txt);
+                tvId = itemView.findViewById(R.id.note_id_txt);
+                tvCid = itemView.findViewById(R.id.customer_name_txt);
+                tvEvent = itemView.findViewById(R.id.event_name_txt);
+                tvDate = itemView.findViewById(R.id.event_date_txt);
+                tvType = itemView.findViewById(R.id.event_type_txt);
             }
         }
     }

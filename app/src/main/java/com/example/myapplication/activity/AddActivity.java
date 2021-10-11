@@ -90,17 +90,5 @@ public class AddActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // this is the button for user jump into list of note page
-        View note_button = findViewById(R.id.note_button);
-        note_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AddActivity.this, NoteAddActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
     }
 }
