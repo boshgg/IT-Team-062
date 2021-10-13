@@ -1,10 +1,14 @@
 package com.example.myapplication.activity;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+import android.os.Environment;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -216,5 +220,6 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME1);
     }
+
 }
 

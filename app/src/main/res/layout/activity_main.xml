@@ -39,7 +39,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Username"
-        android:text="it2021"
         android:singleLine="true"
         android:textSize="16sp" />
 
@@ -47,12 +46,11 @@
         android:id="@+id/t_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
         android:layout_below="@id/userName"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
-        android:textColor="#778899"
-        />
+        android:layout_marginTop="5dp"
+        android:text="Password"
+        android:textColor="#778899" />
 
     <EditText
         android:id="@+id/password"
@@ -62,7 +60,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="********"
-        android:text="it2021"
         android:inputType="textPassword"
         android:textSize="16sp" />
 
@@ -89,10 +86,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forget Password?"
-        android:textSize="8sp"
+        android:layout_below="@+id/password"
         android:layout_marginLeft="230dp"
-        android:layout_below="@+id/password"/>
+        android:text="Forget Password?"
+        android:textSize="8sp" />
 
 
 

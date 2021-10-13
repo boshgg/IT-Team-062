@@ -163,7 +163,30 @@ public class CreateDBActivity extends AppCompatActivity {
             confirmDialog();
 
         }
+        if(item.getItemId() == R.id.share_customer){
+            shareData();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    void shareData(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Share Data");
+        builder.setMessage("Do you want to share your customer database?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(CreateDBActivity.this, SendEmailActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.create().show();
     }
 
     void confirmDialog() {
