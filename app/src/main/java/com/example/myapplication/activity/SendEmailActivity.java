@@ -42,7 +42,8 @@ public class SendEmailActivity extends AppCompatActivity {
                 String emailAddress =mEtEmailAddress.getText().toString().trim();
                 String name =mEtName.getText().toString().trim();
                 if (isValidEmailId(emailAddress)){
-                    sendDBFileWithEmail(emailAddress, name);
+                    String[] address = {emailAddress};
+                    sendDBFileWithEmail(address, name);
                     Toast.makeText(SendEmailActivity.this, "Send Successfully", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(SendEmailActivity.this, "Incorrect Email Address, Please try again", Toast.LENGTH_SHORT).show();
@@ -63,24 +64,25 @@ public class SendEmailActivity extends AppCompatActivity {
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
 
-    private void sendDBFileWithEmail(String emailAddress, String sender) {
+    private void sendDBFileWithEmail(String[] emailAddress, String sender) {
         String subject = "CRM shared customer database";
         String body = "shared from "+ sender;
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("application/vnd.sqlite3");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, emailAddress);
         emailIntent.putExtra(Intent.EXTRA_TEXT, body);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
-        String DB_NAME = "it_db.db";
+        String DB_NAME = "Customer.db";
         String PACKAGE_NAME = "com.example.myapplication";
         String DB_PATH = "/data"
                 + Environment.getDataDirectory().getAbsolutePath() + "/"
                 + PACKAGE_NAME + "/databases";
 
-        Uri uri = Uri.parse("file://" + DB_PATH + "/" + DB_NAME);
+        Uri uri = Uri.parse("file:/" + DB_PATH + "/" + DB_NAME);
         emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        startActivity(emailIntent);
+        emailIntent.setType("application/vnd.sqlite3");
+
+        startActivity(Intent.createChooser(emailIntent, "send database"));
     }
 
 }
