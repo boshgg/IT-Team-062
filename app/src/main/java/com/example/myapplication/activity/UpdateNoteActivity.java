@@ -64,39 +64,26 @@ public class UpdateNoteActivity extends AppCompatActivity {
                 confirmDialog();
             }
         });
-
-        // this is the button for user jump into list of note page
-        View note_button = findViewById(R.id.note_button);
-        note_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UpdateNoteActivity.this, NoteListActivity.class);
-                startActivity(intent);
-            }
-        });
     }
     //get the values that need to show on the list
     void getAndSetIntentData() {
 
-//
-//        try {
-//            id = getIntent().getIntExtra("id",-1);
-//            name = getIntent().getStringExtra("name");
-//            birthday = getIntent().getStringExtra("birthday");
-//            age = getIntent().getStringExtra("age");
-//            gender = getIntent().getStringExtra("gender");
-//
-//            name_input.setText(name);
-//            age_input.setText(age);
-//            birthday_input.setText(birthday);
-//            gender_input.setText(gender);
-//        }catch (Exception e){
-//            Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
-//        }
-//
-//
+        try {
+            id = getIntent().getIntExtra("id",-1);
+            cid = getIntent().getStringExtra("cid");
+            event = getIntent().getStringExtra("event");
+            date = getIntent().getStringExtra("date");
+            type = getIntent().getStringExtra("type");
+            note = getIntent().getStringExtra("note");
 
-
+            cid_input.setText(cid);
+            event_input.setText(event);
+            date_input.setText(date);
+            type_input.setText(type);
+            note_input.setText(note);
+        }catch (Exception e){
+            Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

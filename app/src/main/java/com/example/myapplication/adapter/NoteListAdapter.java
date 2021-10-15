@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activity.NoteAddActivity;
+import com.example.myapplication.activity.UpdateNoteActivity;
 import com.example.myapplication.bean.Note;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            View view = inflater.inflate(R.layout.my_row,parent,false);
+            View view = inflater.inflate(R.layout.my_note_row,parent,false);
             return new MyViewHolder(view);
         }
 
@@ -58,7 +59,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, NoteAddActivity.class);
+                    Intent intent = new Intent(context, UpdateNoteActivity.class);
                     intent.putExtra("nid",note.getId());
                     intent.putExtra("cid",cid);
                     intent.putExtra("event",event);
@@ -75,7 +76,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
             return nData==null?0:nData.size();
         }
 
-        //get all the values from the layout (my_row.xml)
+        //get all the values from the layout (my_note_row.xml)
         public class MyViewHolder extends RecyclerView.ViewHolder {
             TextView tvCid, tvId, tvEvent,tvDate, tvType;
             public MyViewHolder(@NonNull View itemView) {
