@@ -23,7 +23,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             country_input, cusPhone_input, email_input, language_input, location_input,
             interest_input, clientInfo_input;
     Button add_button, birthday_button;
-    TextView birthday_view;
+    TextView birthday_view, age_view;
 
     //set up customer information page values
     @Override
@@ -32,7 +32,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_add);
 
         name_input = findViewById(R.id.name_input);
-        age_input = findViewById(R.id.age_input);
         birthday_view = findViewById(R.id.birthday_view);
         gender_input = findViewById(R.id.gender_input);
         companyName_input = findViewById(R.id.companyName_input);
@@ -110,6 +109,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             String desc=String.format("%d-%d-%d",year, month+1, dayOfMonth);
                             birthday_view.setText(desc);
+                            int age = year - (calendar.get(Calendar.YEAR));
+                            age_view.setText(Integer.valueOf(age));
                         }
                     }, calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
