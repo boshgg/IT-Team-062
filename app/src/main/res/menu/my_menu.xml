@@ -14,6 +14,12 @@
         android:icon="@drawable/ic_delete"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/check_birthday"
+        android:title="Check birthday"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="never"/>
+
 
 
 

@@ -103,21 +103,17 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.birthday_choose){
-            //获取日历的一个实例，里面包含了当前的年月日
             Calendar calendar=Calendar.getInstance();
-            //构建一个日期对话框，该对话框已经集成了日期选择器
-            //DatePickerDialog的第二个构造参数指定了日期监听器
             DatePickerDialog pickerDialog = new DatePickerDialog(AddActivity.this,
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            String desc=String.format("%d-%d-%d",year, month, dayOfMonth);
+                            String desc=String.format("%d-%d-%d",year, month+1, dayOfMonth);
                             birthday_view.setText(desc);
                         }
                     }, calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH));
-            //把日期对话框显示在界面上
             pickerDialog.show();
         }
     }

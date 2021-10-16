@@ -4,13 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +32,7 @@ import com.example.myapplication.bean.Custom;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CreateDBActivity extends AppCompatActivity {
@@ -32,6 +40,8 @@ public class CreateDBActivity extends AppCompatActivity {
     FloatingActionButton add_button;
     ImageView empty_imageview;
     TextView no_data;
+    Calendar now = Calendar.getInstance();
+    int noti_id = 1;
 
     CustomerInfoDBHelper myDB;
     ArrayList<String> customer_id, customer_name, customer_birthday, customer_age, customer_gender,
@@ -80,7 +90,74 @@ public class CreateDBActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(CreateDBActivity.this));
 
         getDbData();
+        checkBirthDayAndSendNotification();
 
+
+    }
+
+    private void checkBirthDayAndSendNotification(){
+        CustomerInfoDBHelper helper = new CustomerInfoDBHelper(this);
+        Cursor cursor = helper.readALLData();
+
+        int now_month = (now.get(Calendar.MONTH) + 1);
+        int now_day = now.get(Calendar.DAY_OF_MONTH);
+        Log.d("Day", "month"+String.valueOf(now_month));
+        Log.d("Day", "day"+String.valueOf(now_day));
+
+        try {
+            while (cursor.moveToNext()){
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String birth = cursor.getString(cursor.getColumnIndexOrThrow("birthday"));
+
+                String[] dates = birth.split("-");
+                int birthday_month = Integer.parseInt(dates[1]);
+                int birthday_day = Integer.parseInt(dates[2]);
+
+                if (birthday_month == now_month){
+                    Log.d("Day", String.valueOf("birthday:"+birthday_day));
+                    int day_close = birthday_day - now_day;
+                    Log.d("Day", String.valueOf("day_close:"+day_close));
+                    if (day_close <= 3 && day_close >=1){
+                        String birthdayNotification = "Customer "+ name +"'s birthday is coming in " + day_close +" days";
+                        NotificationManager notificationManager = (NotificationManager) CreateDBActivity.this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+                        Intent intent = new Intent(CreateDBActivity.this, CreateDBActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(CreateDBActivity.this, 0, intent, 0);
+
+                        String channelId = "my_channel";
+                        NotificationCompat.Builder notification = new NotificationCompat.Builder(CreateDBActivity.this, channelId)
+                                .setContentTitle("Some customers' Birthday is coming")
+                                .setContentText(birthdayNotification)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true)
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setWhen(System.currentTimeMillis());
+
+
+                        notificationManager.notify(noti_id, notification.build());
+                        noti_id+=1;
+                    }
+                }
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private String createNotificationChannel(String channelID, String channelNAME, int level) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            NotificationChannel channel = new NotificationChannel(channelID, channelNAME, level);
+            manager.createNotificationChannel(channel);
+            return channelID;
+        } else {
+            return null;
+        }
     }
 
     // check all the customer in database
@@ -125,6 +202,7 @@ public class CreateDBActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
     }
 
 
@@ -165,6 +243,9 @@ public class CreateDBActivity extends AppCompatActivity {
         }
         if(item.getItemId() == R.id.share_customer){
             shareData();
+        }
+        if(item.getItemId() == R.id.check_birthday){
+            checkBirthDayAndSendNotification();
         }
         return super.onOptionsItemSelected(item);
     }
