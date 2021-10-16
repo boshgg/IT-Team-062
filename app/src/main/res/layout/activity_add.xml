@@ -108,28 +108,10 @@
                app:layout_constraintTop_toBottomOf="@+id/name_input" />
 
            <EditText
-               android:id="@+id/birthday_input"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="30dp"
-               android:layout_marginTop="16dp"
-               android:layout_marginEnd="30dp"
-               android:ems="10"
-               android:hint="@string/birth"
-               android:importantForAutofill="no"
-               android:inputType="textShortMessage"
-               android:minHeight="55dp"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="1.0"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/age_input" />
-
-           <EditText
                android:id="@+id/gender_input"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_marginStart="30dp"
-               android:layout_marginTop="16dp"
                android:layout_marginEnd="30dp"
                android:ems="10"
                android:hint="@string/gender"
@@ -139,7 +121,8 @@
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintHorizontal_bias="0.0"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/birthday_input" />
+               app:layout_constraintTop_toBottomOf="@+id/birthday_choose"
+               tools:layout_editor_absoluteY="263dp" />
 
            <EditText
                android:id="@+id/email_input"
@@ -242,6 +225,30 @@
                app:layout_constraintHorizontal_bias="0.0"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/clientInfo_input" />
+
+           <TextView
+               android:id="@+id/birthday_view"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="12dp"
+               android:text="Birthday:"
+               android:textSize="15sp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.084"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/age_input" />
+
+           <Button
+               android:id="@+id/birthday_choose"
+               android:layout_width="173dp"
+               android:layout_height="39dp"
+               android:layout_marginTop="8dp"
+               android:text="Choose Birthday"
+               android:textSize="15sp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.126"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/birthday_view" />
 
 
        </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".activity.NotificationActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.UpdateNoteActivity"
             android:exported="true" />
         <activity
