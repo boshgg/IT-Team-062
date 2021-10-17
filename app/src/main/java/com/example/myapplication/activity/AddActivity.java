@@ -33,6 +33,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         name_input = findViewById(R.id.name_input);
         birthday_view = findViewById(R.id.birthday_view);
+        age_view = findViewById(R.id.age_value);
         gender_input = findViewById(R.id.gender_input);
         companyName_input = findViewById(R.id.companyName_input);
         country_input = findViewById(R.id.country_input);
@@ -60,7 +61,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 } else {
 
                     String userName = name_input.getText().toString().trim();
-                    String age = age_input.getText().toString().trim();
+                    String age = age_view.getText().toString().trim();
 
                     // determine if ages is not entered correctly
 
@@ -109,8 +110,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             String desc=String.format("%d-%d-%d",year, month+1, dayOfMonth);
                             birthday_view.setText(desc);
-                            int age = year - (calendar.get(Calendar.YEAR));
-                            age_view.setText(Integer.valueOf(age));
+                            int age = (calendar.get(Calendar.YEAR)) - year;
+                            age_view.setText(String.valueOf(age));
                         }
                     }, calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
