@@ -19,7 +19,7 @@ import java.util.Calendar;
 // This class create new customer information page, and insert the value into customer database
 public class AddActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
-    EditText name_input, age_input, gender_input, companyName_input,
+    EditText name_input, gender_input, companyName_input,
             country_input, cusPhone_input, email_input, language_input, location_input,
             interest_input, clientInfo_input;
     Button add_button, birthday_button;
@@ -55,7 +55,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             public void onClick(View view) {
                 CustomerInfoDBHelper myDB = new CustomerInfoDBHelper(AddActivity.this);
                 if (name_input.getText().toString().isEmpty() ||
-                        age_input.getText().toString().isEmpty() ||
+                        age_view.getText().toString().isEmpty() ||
                         gender_input.getText().toString().isEmpty()) {
                     Toast.makeText(AddActivity.this, "MISSING required information", Toast.LENGTH_SHORT).show();
                 } else {
