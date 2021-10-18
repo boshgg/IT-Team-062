@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,19 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+
+        RadioGroup rgButton = findViewById(R.id.rg_selector);
+        rgButton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.male){
+                    gender_input.setText("male");
+                }else{
+                    gender_input.setText("female");
+                }
+            }
+        });
 
         name_input = findViewById(R.id.name_input);
         birthday_view = findViewById(R.id.birthday_view);
@@ -63,25 +77,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     String userName = name_input.getText().toString().trim();
                     String age = age_view.getText().toString().trim();
 
-                    // determine if ages is not entered correctly
-
-                    if (Integer.valueOf(age) > 100) {
-                        age = "100";
-                    } else if (Integer.valueOf(age) < 0) {
-                        age = "0";
-                    }
-
                     String birthday = birthday_view.getText().toString().trim();
                     String gender = gender_input.getText().toString().trim();
-
-//                    for (int i = 0; i < gender.length(); i++){
-//                        char ch = gender.charAt(i);
-//                        if ( ch >= '0' && ch <= '9'){
-//                            Toast.makeText(AddActivity.this, "Wrong Gender Information", Toast.LENGTH_SHORT).show();
-//                            break;
-//                        }
-//                    }
-
                     String company = companyName_input.getText().toString().trim();
                     String country = country_input.getText().toString().trim();
                     String phone = cusPhone_input.getText().toString().trim();

@@ -18,6 +18,7 @@ import java.util.Date;
 
 //This class create the customer table in the database
 public class CustomerInfoDBHelper extends SQLiteOpenHelper {
+
     private Context mContext;
     private Context nContext;
 
@@ -44,7 +45,8 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_TYPE = "type";
     private static final String COLUMN_NOTE = "note";
-    private static final String COLUMN_CID = "cid";
+    private static final String COLUMN_CUSTOMNAME = "name";
+    private static final String COLUMN_USERID = "userId";
     CustomerInfoDBHelper(@Nullable Context context){
         super(context,DATABASE_NAME,null, DATABASE_VERSION);
         mContext=context;
@@ -75,11 +77,12 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
 
         String query2 = "CREATE TABLE " + TABLE_NAME2 +
                 " (" + COLUMN_NID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_CID + " TEXT, "+
+                COLUMN_CUSTOMNAME + " TEXT, "+
                 COLUMN_EVENT + " TEXT, " +
                 COLUMN_DATE + " INTEGER, "+
                 COLUMN_TYPE + " TEXT, "+
-                COLUMN_NOTE + " TEXT );";
+                COLUMN_NOTE + " TEXT, "+
+                COLUMN_USERID + " TEXT );";
         sqLiteDatabase.execSQL(query2);
 
     }
@@ -114,14 +117,15 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void add_note(String cid, String event, String date, String type, String note){
+    public void add_note(String cid, String event, String date, String type, String note,int userId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
-        cv.put(COLUMN_CID, cid);
+        cv.put(COLUMN_CUSTOMNAME, cid);
         cv.put(COLUMN_EVENT, event);
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_TYPE,type);
         cv.put(COLUMN_NOTE, note);
+        cv.put(COLUMN_USERID, userId+"");
 
         long result = db.insert(TABLE_NAME2,null,cv);
         if (result <0){
@@ -143,8 +147,8 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    Cursor readALLNoteData(){
-        String query = "SELECT * FROM " + TABLE_NAME2;
+    Cursor readALLNoteData(int userId){
+        String query = "SELECT * FROM " + TABLE_NAME2+" where userId = "+userId ;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if (db != null){
@@ -184,18 +188,18 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     }
 
     //this function get all the values from the updateActivity, and change the values in the table
-    void updateNoteData(String nid, String cid, String event, String date, String note, String type){
+    void updateNoteData(String nid, String name, String event, String date, String note, String type){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_CID, cid);
+        cv.put(COLUMN_CUSTOMNAME, name);
         cv.put(COLUMN_EVENT, event);
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_TYPE,type);
         cv.put(COLUMN_NOTE, note);
 
-        long result = db.update(TABLE_NAME1, cv, "id=?", new String[]{nid});
+        long result = db.update(TABLE_NAME2, cv, "nid=?", new String[]{nid});
         //check the update does not success
         if(result < 1 ){
             Toast.makeText(mContext, "Failed to Update", Toast.LENGTH_SHORT).show();

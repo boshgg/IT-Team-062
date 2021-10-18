@@ -89,10 +89,15 @@ public class CreateDBActivity extends AppCompatActivity {
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(CreateDBActivity.this));
 
-        getDbData();
         checkBirthDayAndSendNotification();
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDbData();
     }
 
     private void checkBirthDayAndSendNotification(){
@@ -110,9 +115,15 @@ public class CreateDBActivity extends AppCompatActivity {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
                 String birth = cursor.getString(cursor.getColumnIndexOrThrow("birthday"));
 
-                String[] dates = birth.split("-");
-                int birthday_month = Integer.parseInt(dates[1]);
-                int birthday_day = Integer.parseInt(dates[2]);
+                int birthday_month = 0,birthday_day = 0;
+                try {
+                    String[] dates = birth.split("-");
+                     birthday_month = Integer.parseInt(dates[1]);
+                     birthday_day = Integer.parseInt(dates[2]);
+                }catch (Exception e){
+
+                }
+
 
                 if (birthday_month == now_month){
                     Log.d("Day", String.valueOf("birthday:"+birthday_day));

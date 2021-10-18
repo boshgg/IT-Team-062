@@ -140,6 +140,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/birthday_input2" />
 
+            <RadioGroup
+                android:id="@+id/rg_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/gender_input2"
+                app:layout_constraintBottom_toTopOf="@+id/email_input2"
+
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="male"/>
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="female"/>
+
+            </RadioGroup>
+
             <EditText
                 android:id="@+id/email_input2"
                 android:layout_width="match_parent"

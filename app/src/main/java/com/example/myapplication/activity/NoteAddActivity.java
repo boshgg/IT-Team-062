@@ -21,11 +21,15 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
     EditText cid_input, event_input,  type_input, note_input ;
     Button add_button, date_button;
     TextView date_view;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_note_add);
+
+
+        userId = getIntent().getIntExtra("userId", -1);
         cid_input = findViewById(R.id.cid_input);
         date_view = findViewById(R.id.date_input);
         event_input = findViewById(R.id.event_input);
@@ -50,9 +54,10 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
                     String date = date_view.getText().toString().trim();
                     String type = type_input.getText().toString().trim();
                     String note = note_input.getText().toString().trim();
-                    myDB.add_note(cid,event,date,type,note);
+
+                    myDB.add_note(cid,event,date,type,note,userId);
                 }
-                Intent intent = new Intent(NoteAddActivity.this, CreateDBActivity.class);
+                Intent intent = new Intent(NoteAddActivity.this, NoteListActivity.class);
                 startActivity(intent);
 
 

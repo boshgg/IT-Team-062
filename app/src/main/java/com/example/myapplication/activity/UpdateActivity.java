@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -29,6 +30,17 @@ public class UpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+        RadioGroup rgButton = findViewById(R.id.rg_selector);
+        rgButton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.male){
+                    gender_input.setText("male");
+                }else{
+                    gender_input.setText("female");
+                }
+            }
+        });
         name_input = findViewById(R.id.name_input2);
         age_input = findViewById(R.id.age_input2);
         birthday_input = findViewById(R.id.birthday_input2);
@@ -61,7 +73,7 @@ public class UpdateActivity extends AppCompatActivity {
                 gender = gender_input.getText().toString();
                 company = companyName_input.getText().toString();
                 country = country_input.getText().toString();
-//                phone = cusPhone_input.getText().toString();
+                phone = cusPhone_input.getText().toString();
                 email = email_input.getText().toString();
                 language = language_input.getText().toString();
                 location = location_input.getText().toString();
@@ -89,6 +101,7 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UpdateActivity.this, NoteListActivity.class);
+                intent.putExtra("userId",id);
                 startActivity(intent);
             }
         });

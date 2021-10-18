@@ -22,16 +22,19 @@
             android:exported="true" />
         <activity
             android:name=".activity.NoteListActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".activity.UpdateActivity"
             android:exported="true"
-            android:parentActivityName=".activity.CreateDBActivity" />
+            android:parentActivityName=".activity.CreateDBActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".activity.AddActivity"
             android:exported="true"
             android:label="Add Customer"
-            android:parentActivityName=".activity.CreateDBActivity" />
+            android:parentActivityName=".activity.CreateDBActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="true" />
@@ -44,7 +47,8 @@
         <activity
             android:name=".activity.CreateDBActivity"
             android:exported="true"
-            android:label="Customer List" />
+            android:label="Customer List"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">
@@ -54,7 +58,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NoteAddActivity" />
+        <activity android:name=".activity.NoteAddActivity"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>
