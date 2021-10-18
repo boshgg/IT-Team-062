@@ -1,24 +1,20 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.hardware.usb.UsbRequest;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.db.DBHelper;
+import com.example.myapplication.R;
 import com.example.myapplication.db.UserService;
 
 public class MainActivity extends AppCompatActivity {
     final UserService userService  = new UserService(this);
     private Button mBtnLogin;
-    private Button mBtnRegister;
     private EditText mEtUserName;
     private EditText mEtPassword;
 
@@ -28,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mBtnLogin = findViewById((R.id.btn_login));
-        mBtnRegister = findViewById((R.id.btn_register));
         mEtUserName = findViewById(R.id.userName);
         mEtPassword = findViewById(R.id.password);
         setListeners();
@@ -41,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setListeners(){
         OnClick onClick = new OnClick();
-        mBtnRegister.setOnClickListener(onClick);
         mBtnLogin.setOnClickListener(onClick);
     }
 
@@ -49,10 +43,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent intent = null;
-            if (view.getId() == R.id.btn_register){
-                intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }else if (view.getId() == R.id.btn_login){
+            if (view.getId() == R.id.btn_login){
                 String username =mEtUserName.getText().toString().trim();
                 String password =mEtPassword.getText().toString().trim();
                 if (username.isEmpty()){
