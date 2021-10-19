@@ -107,6 +107,7 @@ public class CreateDBActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        allData.clear();
         getDbData();
     }
 

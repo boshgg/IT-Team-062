@@ -12,17 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".activity.NoteAddActivity"
+            android:parentActivityName=".activity.NoteListActivity"/>
+        <activity
             android:name=".activity.NotificationActivity"
             android:exported="true" />
         <activity
             android:name=".activity.UpdateNoteActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".activity.NoteListActivity"/>
         <activity
             android:name=".activity.SendEmailActivity"
             android:exported="true" />
         <activity
             android:name=".activity.NoteListActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".activity.AddActivity"/>
         <activity
             android:name=".activity.UpdateActivity"
             android:exported="true"
@@ -46,7 +51,6 @@
         <activity
             android:name=".activity.SearchResultActivity"
             android:exported="true"
-
             android:label="Results"
             android:parentActivityName=".activity.CreateDBActivity" />/>
         <activity
@@ -65,7 +69,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NoteAddActivity" />
     </application>
 
 </manifest>
