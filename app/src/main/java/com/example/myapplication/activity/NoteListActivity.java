@@ -23,11 +23,15 @@ public class NoteListActivity extends AppCompatActivity {
     private List<Note> noteData;
     FloatingActionButton add_button;
     NoteListAdapter NoteListAdapter;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_note_list);
+
+
+        userId = getIntent().getIntExtra("userId", -1);
 
         recyclerView = findViewById(R.id.recyclerView);
         noteData = new ArrayList<>();
@@ -40,24 +44,31 @@ public class NoteListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NoteListActivity.this, NoteAddActivity.class);
+                intent.putExtra("userId",userId);
                 startActivity(intent);
             }
         });
 
-        getDbData();
+
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDbData();
+    }
 
     private void getDbData() {
         CustomerInfoDBHelper helper = new CustomerInfoDBHelper(this);
         // read all notes
-        Cursor cursor = helper.readALLNoteData();
+        Cursor cursor = helper.readALLNoteData(userId);
 
         try {
             while (cursor.moveToNext()){
 
                 int nid = cursor.getInt(cursor.getColumnIndexOrThrow("nid"));
-                String cid = cursor.getString(cursor.getColumnIndexOrThrow("cid"));
+                String cid = cursor.getString(cursor.getColumnIndexOrThrow("name"));
                 String event = cursor.getString(cursor.getColumnIndexOrThrow("event"));
                 String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
                 String addnote = cursor.getString(cursor.getColumnIndexOrThrow("note"));
