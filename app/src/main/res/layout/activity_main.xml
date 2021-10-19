@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     android:padding="20dp"
     android:background="#FFFFFF">
 
@@ -46,12 +46,11 @@
         android:id="@+id/t_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
         android:layout_below="@id/userName"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
-        android:textColor="#778899"
-        />
+        android:layout_marginTop="5dp"
+        android:text="Password"
+        android:textColor="#778899" />
 
     <EditText
         android:id="@+id/password"
@@ -75,22 +74,12 @@
         android:text="Login" />
 
     <Button
-        android:id="@+id/btn_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_login"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
-        android:text="Register"/>
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forget Password?"
-        android:textSize="8sp"
+        android:layout_below="@+id/password"
         android:layout_marginLeft="230dp"
-        android:layout_below="@+id/password"/>
+        android:text="Forget Password?"
+        android:textSize="8sp" />
 
 
 
