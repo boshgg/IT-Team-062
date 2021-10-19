@@ -60,7 +60,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, UpdateNoteActivity.class);
-                    intent.putExtra("nid",note.getId());
+                    intent.putExtra("id",note.getId());
                     intent.putExtra("cid",cid);
                     intent.putExtra("event",event);
                     intent.putExtra("date",date);
