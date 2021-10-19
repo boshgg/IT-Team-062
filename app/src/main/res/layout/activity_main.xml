@@ -39,6 +39,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Username"
+        android:text="it2021"
         android:singleLine="true"
         android:textSize="16sp" />
 
@@ -60,6 +61,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="********"
+        android:text="it2021"
         android:inputType="textPassword"
         android:textSize="16sp" />
 
