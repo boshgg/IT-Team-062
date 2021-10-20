@@ -30,7 +30,6 @@ public class NoteListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_note_list);
 
-
         userId = getIntent().getIntExtra("userId", -1);
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -49,7 +48,6 @@ public class NoteListActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
 
@@ -67,6 +65,7 @@ public class NoteListActivity extends AppCompatActivity {
         Cursor cursor = helper.readALLNoteData(userId);
 
         try {
+
             while (cursor.moveToNext()){
 
                 int nid = cursor.getInt(cursor.getColumnIndexOrThrow("nid"));

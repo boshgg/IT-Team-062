@@ -125,10 +125,6 @@ public class UpdateActivity extends AppCompatActivity {
             Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
         }
 
-
-
-
-
     }
 
     void confirmDialog(){
@@ -150,8 +146,5 @@ public class UpdateActivity extends AppCompatActivity {
         });
         builder.create().show();
     }
-
-
-
 
 }

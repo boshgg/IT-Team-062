@@ -21,7 +21,7 @@ import java.util.Calendar;
 public class UpdateNoteActivity extends AppCompatActivity implements View.OnClickListener {
     EditText cid_input, event_input, mEtDate, type_input, note_input;
     Button update_button, delete_button,birthday_button;
-    int id;
+    int nid;
     String cid, event, date, note, type;
 
     //get all the changing value in the layout(activity_update)
@@ -56,7 +56,7 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
                 note = note_input.getText().toString();
                 type = type_input.getText().toString();
 
-                myDB.updateNoteData(id+"", name, event, date, note, type);
+                myDB.updateNoteData(nid+"", name, event, date, note, type);
 
                 Intent intent = new Intent(UpdateNoteActivity.this, CreateDBActivity.class);
                 startActivity(intent);
@@ -74,7 +74,7 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
     void getAndSetIntentData() {
 
         try {
-            id = getIntent().getIntExtra("id",-1);
+            nid = getIntent().getIntExtra("nid",-1);
             cid = getIntent().getStringExtra("cid");
             event = getIntent().getStringExtra("event");
             date = getIntent().getStringExtra("date");
@@ -100,7 +100,7 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 CustomerInfoDBHelper myDB = new CustomerInfoDBHelper(UpdateNoteActivity.this);
-                myDB.deleteOneRow(id+"");
+                myDB.deleteOneRow2(nid+"");
                 finish();
             }
         });

@@ -13,14 +13,14 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".activity.NoteAddActivity"
-            android:parentActivityName=".activity.NoteListActivity"/>
+            android:parentActivityName=".activity.CreateDBActivity"/>
         <activity
             android:name=".activity.NotificationActivity"
             android:exported="true" />
         <activity
             android:name=".activity.UpdateNoteActivity"
             android:exported="true"
-            android:parentActivityName=".activity.NoteListActivity"/>
+            android:parentActivityName=".activity.CreateDBActivity"/>
         <activity
             android:name=".activity.SendEmailActivity"
             android:exported="true" />

@@ -230,6 +230,17 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
             Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
         }
     }
+
+    void deleteOneRow2(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME2,"nid=?", new String[]{row_id});
+        if (result<=0){
+            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
     //functions delete whole table
     void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
