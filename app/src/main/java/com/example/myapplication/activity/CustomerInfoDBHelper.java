@@ -50,6 +50,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     CustomerInfoDBHelper(@Nullable Context context){
         super(context,DATABASE_NAME,null, DATABASE_VERSION);
         mContext=context;
+        nContext=context;
     }
 
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int newVersion){
@@ -129,10 +130,10 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_NAME2,null,cv);
         if (result <0){
-            Toast.makeText(mContext,"FAILED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(nContext,"FAILED", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(mContext, "ADDED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+            Toast.makeText(nContext, "ADDED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -213,10 +214,10 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         long result = db.update(TABLE_NAME2, cv, "nid=?", new String[]{nid});
         //check the update does not success
         if(result < 1 ){
-            Toast.makeText(mContext, "Failed to Update", Toast.LENGTH_SHORT).show();
+            Toast.makeText(nContext, "Failed to Update", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(mContext, "Updated Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(nContext, "Updated Successfully", Toast.LENGTH_SHORT).show();
         }
     }
     //function delete on row of customer table
@@ -235,10 +236,10 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME2,"nid=?", new String[]{row_id});
         if (result<=0){
-            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(nContext, "Failed to delete", Toast.LENGTH_SHORT).show();
         }
         else{
-            Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(nContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
         }
     }
     //functions delete whole table

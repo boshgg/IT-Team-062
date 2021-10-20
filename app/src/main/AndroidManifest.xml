@@ -13,6 +13,7 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".activity.NoteAddActivity"
+            android:exported="true"
             android:parentActivityName=".activity.CreateDBActivity"/>
         <activity
             android:name=".activity.NotificationActivity"
@@ -27,7 +28,7 @@
         <activity
             android:name=".activity.NoteListActivity"
             android:exported="true"
-            android:parentActivityName=".activity.AddActivity"/>
+            android:parentActivityName=".activity.CreateDBActivity"/>
         <activity
             android:name=".activity.UpdateActivity"
             android:exported="true"
@@ -47,12 +48,12 @@
             android:name=".activity.SearchActivity"
             android:exported="true"
             android:label="Search Customer"
-            android:parentActivityName=".activity.CreateDBActivity" />/>
+            android:parentActivityName=".activity.CreateDBActivity" />
         <activity
             android:name=".activity.SearchResultActivity"
             android:exported="true"
             android:label="Results"
-            android:parentActivityName=".activity.CreateDBActivity" />/>
+            android:parentActivityName=".activity.CreateDBActivity" />
         <activity
             android:name=".activity.TextViewActivity"
             android:exported="true" />

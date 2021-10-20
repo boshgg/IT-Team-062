@@ -41,7 +41,6 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.choose_date).setOnClickListener(this);
 
         add_button.setOnClickListener(new View.OnClickListener() {
-
             // when we hit the + button, will create a database of customer (one row of the customer table)
             @Override
             public void onClick(View view) {
@@ -57,9 +56,8 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
 
                     myDB.add_note(cid,event,date,type,note,userId);
                 }
-                Intent intent = new Intent(NoteAddActivity.this, NoteListActivity.class);
+                Intent intent = new Intent(NoteAddActivity.this, CreateDBActivity.class);
                 startActivity(intent);
-
 
             }
         });
