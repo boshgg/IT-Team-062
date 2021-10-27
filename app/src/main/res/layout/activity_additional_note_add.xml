@@ -6,123 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".activity.NoteAddActivity">
 
-    <EditText
-        android:id="@+id/cid_input"
-        android:layout_width="100dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="3dp"
-        android:ems="5"
-        android:gravity="center"
-        android:hint="Customer ID"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="10dp"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/event_input"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="3dp"
-        android:ems="5"
-        android:gravity="center"
-        android:hint="@string/event"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="10dp"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cid_input"/>
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Add Note"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
 
-    <EditText
-        android:id="@+id/type_input"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:ems="10"
-        android:hint="@string/event_type"
-        android:importantForAutofill="no"
-        android:inputType="textShortMessage"
-        android:minHeight="55dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="172dp"
-        app:layout_constraintTop_toBottomOf="@+id/create_date"/>
+        <EditText
+            android:id="@+id/cid_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/et_style"
+            android:ems="5"
+            android:hint="Customer ID" />
+
+        <EditText
+            android:id="@+id/event_input"
+            android:layout_width="match_parent"
+            style="@style/et_style"
+            android:ems="5"
+            android:hint="@string/event" />
 
 
-    <EditText
-        android:id="@+id/note_input"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:ems="10"
-        android:hint="@string/note"
-        android:inputType="textShortMessage"
-        android:minHeight="55dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type_input"  />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
 
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/save"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/note_input" />
+            <EditText
+                android:id="@+id/date_input"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:hint="@string/date"
+                style="@style/et_style"
+                android:layout_marginBottom="0dp"
+                />
 
-    <Button
-        android:id="@+id/choose_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Choose Date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_input" />
 
-    <TextView
-        android:id="@+id/create_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
-        android:text="Create Date:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_input" />
+            <Button
+                android:id="@+id/choose_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Date"
+                android:textSize="15sp"
+                android:paddingHorizontal="8dp" />
 
-    <TextView
-        android:id="@+id/date_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="24dp"
-        android:text="1900-0-0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_input" />
+        </LinearLayout>
 
+
+        <EditText
+            android:id="@+id/type_input"
+            android:layout_width="match_parent"
+            android:hint="@string/event_type"
+            style="@style/et_style" />
+
+
+        <EditText
+            android:id="@+id/note_input"
+            android:layout_width="match_parent"
+            style="@style/et_style"
+            android:ems="10"
+            android:hint="@string/note"
+            android:layout_height="200dp" />
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="@string/save"
+            style="@style/et_style"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/purple_500"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

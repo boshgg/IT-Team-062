@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.myapplication.R;
@@ -29,6 +30,7 @@ public class NoteListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_note_list);
+        getSupportActionBar().setTitle("Note List");
 
         userId = getIntent().getIntExtra("userId", -1);
 
@@ -81,7 +83,7 @@ public class NoteListActivity extends AppCompatActivity {
                 note.setEvent(event);
                 note.setDate(date);
                 note.setAddnote(addnote);
-                note.setAddnote(type);
+                note.setType(type);
 
                 noteData.add(note);
             }

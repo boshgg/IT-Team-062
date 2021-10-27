@@ -109,18 +109,33 @@ public class UpdateActivity extends AppCompatActivity {
     //get the values that need to show on the list
     void getAndSetIntentData() {
 
-
         try {
             id = getIntent().getIntExtra("id",-1);
             name = getIntent().getStringExtra("name");
             birthday = getIntent().getStringExtra("birthday");
             age = getIntent().getStringExtra("age");
             gender = getIntent().getStringExtra("gender");
+            company = getIntent().getStringExtra("company");
+            country = getIntent().getStringExtra("country");
+            phone = getIntent().getStringExtra("phone");
+            email = getIntent().getStringExtra("email");
+            language = getIntent().getStringExtra("language");
+            location = getIntent().getStringExtra("location");
+            interest = getIntent().getStringExtra("interest");
+            information = getIntent().getStringExtra("information");
 
             name_input.setText(name);
             age_input.setText(age);
             birthday_input.setText(birthday);
             gender_input.setText(gender);
+            companyName_input.setText(company);
+            country_input.setText(country);
+            cusPhone_input.setText(phone);
+            email_input.setText(email);
+            language_input.setText(language);
+            location_input.setText(location);
+            interest_input.setText(interest);
+            clientInfo_input.setText(information);
         }catch (Exception e){
             Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
         }

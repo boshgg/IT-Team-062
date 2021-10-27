@@ -3,6 +3,7 @@ package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
             holder.tvDate.setText(date);
             holder.tvType.setText(type);
 
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -64,7 +66,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
                     intent.putExtra("cid",cid);
                     intent.putExtra("event",event);
                     intent.putExtra("date",date);
-                    intent.putExtra("addnote",addnote);
+                    intent.putExtra("note",addnote);
                     intent.putExtra("type",type);
                     context.startActivity(intent);
                 }

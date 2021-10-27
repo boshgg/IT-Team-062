@@ -198,7 +198,7 @@ public class CreateDBActivity extends AppCompatActivity {
                 String company = cursor.getString(cursor.getColumnIndexOrThrow("company"));
                 String country = cursor.getString(cursor.getColumnIndexOrThrow("country"));
                 String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
-//                String phone = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
+                String phone = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
                 String language = cursor.getString(cursor.getColumnIndexOrThrow("language"));
                 String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
                 String interest = cursor.getString(cursor.getColumnIndexOrThrow("interest"));
@@ -216,6 +216,8 @@ public class CreateDBActivity extends AppCompatActivity {
                 custom.setLocation(location);
                 custom.setInterest(interest);
                 custom.setInformation(information);
+                custom.setCountry(country);
+                custom.setPhone(phone);
 
                 allData.add(custom);
             }

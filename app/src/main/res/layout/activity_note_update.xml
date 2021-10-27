@@ -18,7 +18,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Add Note" />
+            android:text="Update Note"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
 
         <EditText
@@ -27,16 +30,14 @@
             android:layout_height="50dp"
             style="@style/et_style"
             android:ems="5"
-            android:hint="Customer ID"
-        />
+            android:hint="Customer ID" />
 
         <EditText
             android:id="@+id/event_input2"
             android:layout_width="match_parent"
             style="@style/et_style"
             android:ems="5"
-            android:hint="@string/event"
-            />
+            android:hint="@string/event" />
 
 
 
@@ -63,7 +64,7 @@
                 android:id="@+id/birthday_choose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choose Birthday"
+                android:text="Choose Date"
                 android:textSize="15sp"
                 android:paddingHorizontal="8dp" />
 

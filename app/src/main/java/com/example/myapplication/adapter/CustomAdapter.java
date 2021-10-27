@@ -49,7 +49,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         String company = custom.getCompany();
         String country = custom.getCountry();
         String email = custom.getEmail();
-//        String phone = custom.getPhone();
+        String phone = custom.getPhone();
         String language = custom.getLanguage();
         String location = custom.getLocation();
         String interest = custom.getInterest();
@@ -73,7 +73,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("company",company);
                 intent.putExtra("country",country);
                 intent.putExtra("email",email);
-//                intent.putExtra("phone",phone);
+                intent.putExtra("phone",phone);
                 intent.putExtra("language",language);
                 intent.putExtra("location",location);
                 intent.putExtra("interest",interest);

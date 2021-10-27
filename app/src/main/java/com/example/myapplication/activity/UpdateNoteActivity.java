@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -51,10 +52,10 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
                 CustomerInfoDBHelper myDB = new CustomerInfoDBHelper(UpdateNoteActivity.this);
 
                 String name = cid_input.getText().toString();
-                event = event_input.getText().toString();
-                date = mEtDate.getText().toString();
-                note = note_input.getText().toString();
-                type = type_input.getText().toString();
+                String event = event_input.getText().toString();
+                String date = mEtDate.getText().toString();
+                String note = note_input.getText().toString();
+                String type = type_input.getText().toString();
 
                 myDB.updateNoteData(nid+"", name, event, date, note, type);
 

@@ -27,6 +27,7 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_note_add);
+        getSupportActionBar().setTitle("Add Note");
 
 
         userId = getIntent().getIntExtra("userId", -1);
@@ -61,7 +62,6 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
-
     }
 
     @Override

@@ -68,7 +68,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
                 COLUMN_GENDER + " TEXT, " +
                 COLUMN_COMPANY + " TEXT, " +
                 COLUMN_COUNTRY + " TEXT, " +
-//                        COLUMN_PHONE + " INTERGER, " +
+                COLUMN_PHONE + " TEXT, " +
                 COLUMN_EMAIL + " TEXT, " +
                 COLUMN_LANGUAGE + " TEXT, " +
                 COLUMN_LOCATION + " TEXT, " +
@@ -100,7 +100,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_GENDER, gender);
         cv.put(COLUMN_COMPANY, company);
         cv.put(COLUMN_COUNTRY, country);
-//        cv.put(COLUMN_PHONE, phone);
+        cv.put(COLUMN_PHONE, phone);
         cv.put(COLUMN_EMAIL, email);
         cv.put(COLUMN_LANGUAGE, language);
         cv.put(COLUMN_LOCATION, location);
@@ -182,7 +182,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_GENDER, gender);
         cv.put(COLUMN_COMPANY, company);
         cv.put(COLUMN_COUNTRY, country);
-//        cv.put(COLUMN_PHONE, phone);
+        cv.put(COLUMN_PHONE, phone);
         cv.put(COLUMN_EMAIL, email);
         cv.put(COLUMN_LANGUAGE, language);
         cv.put(COLUMN_LOCATION, location);
