@@ -29,7 +29,6 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_additional_note_add);
         getSupportActionBar().setTitle("Add Note");
 
-
         userId = getIntent().getIntExtra("userId", -1);
         cid_input = findViewById(R.id.cid_input);
         date_view = findViewById(R.id.date_input);
@@ -42,7 +41,7 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.choose_date).setOnClickListener(this);
 
         add_button.setOnClickListener(new View.OnClickListener() {
-            // when we hit the + button, will create a database of customer (one row of the customer table)
+            // when we hit the + button, will create a database of note (one row of the note table)
             @Override
             public void onClick(View view) {
                 CustomerInfoDBHelper myDB = new CustomerInfoDBHelper(NoteAddActivity.this);
@@ -63,7 +62,7 @@ public class NoteAddActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
     }
-
+    // date selector
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.choose_date){

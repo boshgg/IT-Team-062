@@ -16,12 +16,12 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Date;
 
-//This class create the customer table in the database
+//This class create the customer table and note table in the database
 public class CustomerInfoDBHelper extends SQLiteOpenHelper {
 
     private Context mContext;
     private Context nContext;
-
+    //all the attribute in the customer table
     private static final String DATABASE_NAME = "Customer.db";
     private static final int DATABASE_VERSION = 2;
     private static final String TABLE_NAME1 = "my_customers";
@@ -38,7 +38,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_LOCATION = "location";
     private static final String COLUMN_INTEREST = "interest";
     private static final String COLUMN_INFORMATION = "information";
-
+    //all the attribute in the note table, using userid to link two table together
     private static final String TABLE_NAME2 = "customers_note";
     private static final String COLUMN_NID = "nid";
     private static final String COLUMN_EVENT = "event";
@@ -57,7 +57,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME1 + TABLE_NAME2 );
         onCreate(db);
     }
-
+    //form to these tables
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query1 = "CREATE TABLE " + TABLE_NAME1 +
@@ -117,7 +117,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         }
 
     }
-
+    //this function is put all the values NoteAddActivity class into the database
     public void add_note(String cid, String event, String date, String type, String note,int userId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv  = new ContentValues();
@@ -147,7 +147,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
-
+    // get the note table for each customer
     Cursor readALLNoteData(int userId){
         String query = "SELECT * FROM " + TABLE_NAME2+" where userId = "+userId ;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -231,7 +231,7 @@ public class CustomerInfoDBHelper extends SQLiteOpenHelper {
             Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //delete function for the note table
     void deleteOneRow2(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME2,"nid=?", new String[]{row_id});
