@@ -89,9 +89,17 @@ Non-functional requirements:
 
 backend: Java
 
+JAVA: Our team members are familiar with Java, also Java support cross-platform.Java has many advantages, we have taken a fancy to some of them, so we chose Java as our programming language, it is an object-oriented programming language. The advantage is that it has high portability. The original design was designed to be written once and executed everywhere. Can develop various applications and games, and it can cross the platform 
+
 database: SQLite
 
+SQLite: SQLite is a small database, most of the android application use SQLite to store data.SQLite can embedded directly into the android application, easy to build up and operate database.  Can be combined with many programming languages at the same time. Also faster than MySQL and PostgreSQL, two of the world’s most popular open source database management systems.
+
 Mockup & Model Desgin :Adobe XD and Draw.io
+
+AdobeXD: Adobe XD easy to learn and use. It is a popular UI design software.
+
+Draw.io: Draw.io is often used by drawing different models. Our team members have studied Draw.io in other subjects.
 
 
 <div id="6.1"></div>
@@ -124,6 +132,12 @@ Version 2.1 2021/10/20
 
 Fixed an issue where customer information in the note list would be split. After entering the note list to modify the customer information, one more customer information will appear in the note list, and the problem has been resolved. 
 The search method has been optimized. Now you can search for part of the customer's name through fuzzy search, and you can get a list that will contain all the customers related to the search content.
+
+Version 3.0 2021/11/1
+
+Fixed the bug of data display. Some data cannot be displayed on the page normally, there are missing or errors.
+Beautify the UI interface. Added background images to the interface to increase the beauty of the app.
+
 
 <div id="8.1"></div>
 
