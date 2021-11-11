@@ -51,6 +51,9 @@ Task 4: There can be related notes for each interaction.
 
 ## 3. Setting up Guide
 
+As the project is offline as it's android app, it only needs to download the apk from our google drive https://drive.google.com/file/d/1NF_GERfrrFF9Gw_Rm7ZGm3GJjoR24Zsp/view
+and install the app on the android phone. There is a guide for install the app with apk if you have any confuse about the installation : https://www.makeuseof.com/tag/how-to-manually-install-side-load-apps-on-your-android-device/.  
+
 <div id="4.1"></div>
 
 ## 4. System requirements:
